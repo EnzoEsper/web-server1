@@ -51,6 +51,24 @@ app.get("/weather", (req, res) => {
   });
 });
 
+app.get("/help/*", (req, res) => {
+  res.render("404", {
+    title: "404 help",
+    name: "dada",
+    errorMessage: "Help article not found!"
+  });
+});
+
+// Tiene que estar al final de los route handlers, express mira los matchs desde arriba
+// hacia abajo
+app.get("*", (req, res) => {
+  res.render("404", {
+    title: "404",
+    name: "dada",
+    errorMessage: "Page not found"
+  });
+});
+
 app.listen(5000, () => {
   console.log("SERVER LISTEN ON PORT 5000");
 });
